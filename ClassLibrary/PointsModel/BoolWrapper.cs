@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-
 namespace ClassLibrary.PointsModel
 {
     public class BoolWrapper:INotifyPropertyChanged
@@ -15,7 +14,6 @@ namespace ClassLibrary.PointsModel
             }
         }
         public BoolWrapper(bool value) { Value = value; }
-
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName]string prop = "")
         {

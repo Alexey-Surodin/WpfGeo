@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-
 namespace WpfGeo.UserControls
 {
     public partial class ScaleControl
@@ -7,7 +6,6 @@ namespace WpfGeo.UserControls
         public static readonly DependencyProperty ScaleFactorXProperty;
         public static readonly DependencyProperty ScaleFactorYProperty;
         public static readonly DependencyProperty ScaleFactorZProperty;
-
         static ScaleControl()
         {
             ScaleFactorXProperty = DependencyProperty.Register("ScaleFactorX", typeof(float), typeof(ScaleControl));
@@ -21,7 +19,6 @@ namespace WpfGeo.UserControls
             ScaleFactorY = 1;
             ScaleFactorZ = 0;
         }
-
         public float ScaleFactorX
         {
             get => (float)GetValue(ScaleFactorXProperty);

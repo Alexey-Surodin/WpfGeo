@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-
 namespace ClassLibrary.PointsModel
 {
     public interface IGeoTreeNode : IGeoTreeItem

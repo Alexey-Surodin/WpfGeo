@@ -10,7 +10,6 @@ namespace WpfGeo.UserControls
         public static readonly DependencyProperty MinRhoProperty;
         public static readonly DependencyProperty MaxRhoProperty;
         public static readonly DependencyProperty AutoColorScaleProperty;
-
         static ColorControl()
         {
             NumOfColorsProperty = DependencyProperty.Register("NumOfColors", typeof(int), typeof(ColorControl));
@@ -26,7 +25,6 @@ namespace WpfGeo.UserControls
             NumOfColors = 1;
             Alpha = 1;
         }
-
         public int NumOfColors
         {
             get => (int)GetValue(NumOfColorsProperty);

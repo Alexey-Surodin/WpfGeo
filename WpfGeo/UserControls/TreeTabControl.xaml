@@ -12,25 +12,21 @@
     <Grid>
         <TabControl IsEnabled="{Binding IsLoaded,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}">
             <TabControl.Resources>
-
                 <!--TreeViewItem Style-->
                 <!--<Style TargetType="TreeViewItem">-->
                 <Style x:Key="TreeViewItemStyle" TargetType="TreeViewItem" >
                     <Setter Property="IsExpanded" Value="{Binding Path= Expanded, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                     <Setter Property="IsSelected" Value="{Binding Path= Selected, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                 </Style>
-
                 <!--CheckBox Style-->
                 <Style x:Key="CheckBoxStyle" TargetType="CheckBox">
                     <Setter Property="IsThreeState" Value="True"/>
                     <Setter Property="IsChecked" Value="{Binding Path= Visible, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </Style>
-
                 <!--Stack Panel Style-->
                 <Style x:Key="StackPanelStyle" TargetType="StackPanel">
                     <Setter Property="Orientation" Value="Horizontal"/>
                 </Style>
-
                 <!--Hierarchical Data Template For GeoPointSlice - 1-2 Level-->
                 <HierarchicalDataTemplate  DataType="{x:Type pointsModel:GeoTreeNode}" 
                     ItemsSource="{Binding Items}">
@@ -39,7 +35,6 @@
                         <TextBlock Text="{Binding Name}"/>
                     </StackPanel>
                 </HierarchicalDataTemplate>
-
                 <!--Hierarchical Data Template For GeoPoint - 3 Level-->
                 <DataTemplate DataType="{x:Type pointsModel:GeoPoint}">
                     <StackPanel Style="{StaticResource StackPanelStyle}">
@@ -56,13 +51,11 @@
                         </TextBlock>
                     </StackPanel>
                 </DataTemplate>
-
                 <Style x:Key="MenuItemStyle" TargetType="MenuItem">
                     <Setter Property="DataContext" Value="{Binding Source={x:Reference TTC},Path=DataContext}"/>
                     <Setter Property="Command" Value="{Binding Path= RemoveVzpCommand}"/>
                     <Setter Property="CommandParameter" Value="{Binding Source={x:Reference VzTreeView}, Path=SelectedItem}"/>
                 </Style>
-
                 <Style x:Key="ExtTreeViewItemStyle"  TargetType="TreeViewItem" BasedOn="{StaticResource TreeViewItemStyle}">
                     <Setter Property="ContextMenu">
                         <Setter.Value>
@@ -72,9 +65,7 @@
                         </Setter.Value>
                     </Setter>
                 </Style>
-
             </TabControl.Resources>
-
             <TabItem Header="Model">
                 <TreeView  ItemsSource="{Binding SourceModel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged }"
                     SelectedItemChanged="PointTreeView_SelectedItemChanged" 
@@ -82,7 +73,6 @@
                     ItemContainerStyle="{StaticResource TreeViewItemStyle}">
                 </TreeView>
             </TabItem>
-
             <TabItem Header="ZLayers">
                 <TreeView ItemsSource="{Binding ZLayerModel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged }"
                     SelectedItemChanged="PointTreeView_SelectedItemChanged" 
@@ -90,7 +80,6 @@
                     ItemContainerStyle="{StaticResource TreeViewItemStyle}">
                 </TreeView>
             </TabItem>
-
             <TabItem Header="VZ Points">
                 <DockPanel LastChildFill="True">
                     <Button DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Margin="4" 
@@ -100,10 +89,8 @@
                         MouseLeftButtonDown="PointTreeView_MouseLeftButtonDown"
                         ItemContainerStyle="{DynamicResource ExtTreeViewItemStyle}">
                     </TreeView>
-
                 </DockPanel>
             </TabItem>
-
         </TabControl>
     </Grid>
 </UserControl>

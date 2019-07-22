@@ -1,7 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
-
 namespace WpfGeo.UserControls
 {
     public partial class ModelBoundaryControl
@@ -30,7 +29,6 @@ namespace WpfGeo.UserControls
             get => (int)GetValue(MaxYProperty);
             set => SetValue(MaxYProperty, value);
         }
-
         static ModelBoundaryControl()
         {
             MinXProperty = DependencyProperty.Register("MinX", typeof(int), typeof(ModelBoundaryControl));
@@ -38,12 +36,10 @@ namespace WpfGeo.UserControls
             MaxXProperty = DependencyProperty.Register("MaxX", typeof(int), typeof(ModelBoundaryControl));
             MaxYProperty = DependencyProperty.Register("MaxY", typeof(int), typeof(ModelBoundaryControl));
         }
-
         public ModelBoundaryControl()
         {
             InitializeComponent();
         }
-
         private void TB_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             var regex = new Regex(@"\-?\d*\z");

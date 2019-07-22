@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-
 namespace WpfGeo.UserControls
 {
     public partial class TreeTabControl
@@ -28,7 +27,6 @@ namespace WpfGeo.UserControls
     }
 }
 
-
 //using System.Collections.ObjectModel;
 //using System.Collections.Specialized;
 //public static readonly DependencyProperty SourceModelProperty;
@@ -38,7 +36,6 @@ namespace WpfGeo.UserControls
 //    set => SetValue(SourceModelProperty, value);
 //}
 //public ObservableCollection<GeoTreeNode> ZLayerModel { get; } = new ObservableCollection<GeoTreeNode>();
-
 //static TreeTabControl()
 //{
 //    SourceModelProperty = DependencyProperty.Register("SourceModel",
@@ -47,7 +44,6 @@ namespace WpfGeo.UserControls
 //        new PropertyMetadata(SourceModelUpdated)
 //        );
 //}
-
 //private static void SourceModelUpdated(DependencyObject d, DependencyPropertyChangedEventArgs e)
 //{
 //    if (d is TreeTabControl tabControl)

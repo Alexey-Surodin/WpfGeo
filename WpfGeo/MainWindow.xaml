@@ -15,9 +15,7 @@
             <ColumnDefinition Width="0.3*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-
         <uc:TreeTabControl Grid.Column="0"/>
-
         <DockPanel Grid.Column="1" >
             <Expander Header="options"
                       DockPanel.Dock="Bottom" ExpandDirection="Up"
@@ -42,11 +40,9 @@
                     </StackPanel>
                 </Expander.Content>
             </Expander>
-
             <TabControl Margin="4"
                         ItemsSource="{Binding  Path=Tabs, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                         SelectedValue="{Binding Path=SelectedTab, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-
                 <TabControl.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Close Tab" Command="{Binding CloseTabCommand}"/>

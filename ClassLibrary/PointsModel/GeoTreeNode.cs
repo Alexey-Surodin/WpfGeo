@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-
 namespace ClassLibrary.PointsModel
 {
     public class GeoTreeNode : IGeoTreeNode
@@ -13,7 +12,6 @@ namespace ClassLibrary.PointsModel
             Items.Add(item);
             item.PropertyChanged += (sender, args) => OnPropertyChanged(args.PropertyName);
         }
-
         public string Name { get; set; }
         public bool? Visible
         {
@@ -50,18 +48,15 @@ namespace ClassLibrary.PointsModel
         }
         public bool Expanded { get; set; }
         bool IGeoTreeItem.Visible { get => Visible ?? false; set => Visible = value; }
-
         private bool npcEnable = true;
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName]string prop = "")
         {
             if (npcEnable) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
-
         public List<IGeoTreeItem> FindItems(Predicate<IGeoTreeItem> func)
         {
             var values = new List<IGeoTreeItem>();
-
             foreach (var node in Items)
                 if (node is IGeoTreeNode tn) values.AddRange(tn.FindItems(func));
             values.AddRange(Items.FindAll(func));

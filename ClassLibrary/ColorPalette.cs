@@ -6,7 +6,6 @@ namespace ClassLibrary
     public class ColorPalette
     {
         public readonly List<KeyValuePair<float, Color>> rhoColors = new List<KeyValuePair<float, Color>>();
-
         private float minRho, maxRho;
         public float MinRho
         {
@@ -26,7 +25,6 @@ namespace ClassLibrary
                 SetRhoColors();
             }
         }
-
         private void SetRhoColors()
         {
             rhoColors.Clear();
@@ -48,11 +46,8 @@ namespace ClassLibrary
             n = n < 0 ? 0 : n >= NumOfColors ? NumOfColors - 1 : n;
             return gLColors[n];
         }
-
-
         private readonly List<Color> gLColors;
         private byte bAlpha, bSaturation, bBrightness;
-
         public int NumOfColors
         {
             get => gLColors.Count;
@@ -74,27 +69,22 @@ namespace ClassLibrary
                 bAlpha = value;
             }
         }
-
         public ColorPalette(int numOfColors, byte alpha = byte.MaxValue, byte saturation = 100, byte brightness = 100)
         {
             gLColors = new List<Color>();
             GeneratePalette(numOfColors, alpha, saturation, brightness);
         }
-
         private void GeneratePalette(int numOfColors, byte alpha = byte.MaxValue, byte saturation = 100, byte brightness = 100)
         {
             if (numOfColors < 1 || numOfColors > 360) throw new ArgumentOutOfRangeException(nameof(numOfColors));
             if (saturation > 100) throw new ArgumentOutOfRangeException(nameof(saturation));
             if (brightness > 100) throw new ArgumentOutOfRangeException(nameof(brightness));
-
             gLColors.Clear();
-
             bAlpha = alpha;
             bBrightness = brightness;
             bSaturation = saturation;
             
             var hueDelta = 240 / numOfColors;
-
             for (var i = 0; i < numOfColors; i++)
             {
                 int red, green, blue;
@@ -104,7 +94,6 @@ namespace ClassLibrary
                 var a = (brightness - bMin) * (h % 60) / 60;
                 var bInc = bMin + a;
                 var bDec = brightness - a;
-
                 switch (hi)
                 {
                     case 0:
@@ -143,14 +132,11 @@ namespace ClassLibrary
                         blue = 0;
                         break;
                 }
-
                 red *= 255 / 100;
                 green *= 255 / 100;
                 blue *= 255 / 100;
-
                 gLColors.Add(Color.FromArgb(alpha, (byte)red, (byte)green, (byte)blue));
             }
         }
-
     }
 }

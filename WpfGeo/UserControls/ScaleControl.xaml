@@ -11,7 +11,6 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-
         <DockPanel Grid.Row="0" Margin="4">
             <TextBlock DockPanel.Dock="Left" Width="20" HorizontalAlignment="Center" Text="kX"/>
             <TextBlock DockPanel.Dock="Right" Width="20" 
@@ -20,7 +19,6 @@
                     Value="{Binding ElementName=SC, Path=ScaleFactorX,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                     />
         </DockPanel>
-
         <DockPanel Grid.Row="1" Margin="4">
             <TextBlock DockPanel.Dock="Left" Width="20" HorizontalAlignment="Center" Text="kY" />
             <TextBlock DockPanel.Dock="Right" Width="20" 
@@ -29,7 +27,6 @@
                     Value="{Binding ElementName=SC,Path=ScaleFactorY, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                     />
         </DockPanel>
-
         <DockPanel Grid.Row="2" Margin="4">
             <TextBlock DockPanel.Dock="Left" Width="20" HorizontalAlignment="Center" Text="kZ" />
             <TextBlock DockPanel.Dock="Right" Width="20" 

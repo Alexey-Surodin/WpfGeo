@@ -8,13 +8,11 @@ namespace GeoModel.Utils
        private ModelBoundary mbv;
         public MinMaxVal mmv;
         private readonly DrawerBoundary dbw;
-
         public Preprocessor(ModelBoundary mbv = null)
         {
             dbw = new DrawerBoundary(11, 10, 11, 10, 11, 10);
             this.mbv = mbv;
         }
-
         private delegate void PointAction(ref GeoPoint point);
         private void ProcessSlices(List<List<List<GeoPoint>>> points, PointAction pointAction)
         {
@@ -33,7 +31,6 @@ namespace GeoModel.Utils
                 float.PositiveInfinity,
                 float.NegativeInfinity,
                 float.PositiveInfinity);
-
             foreach (var slice in points)
                 foreach (var layer in slice)
                     foreach (var point in layer)
@@ -55,16 +52,12 @@ namespace GeoModel.Utils
                 foreach (var layer in slice)
                     foreach (var point in layer)
                     {
-
                         if (mmv.maxX < point.X && point.X < mbv.MaxX) mmv.maxX = point.X;
                         if (mmv.minX > point.X && point.X > mbv.MinX) mmv.minX = point.X;
-
                         if (mmv.maxY < point.Y && point.Y < mbv.MaxY) mmv.maxY = point.Y;
                         if (mmv.minY > point.Y && point.Y > mbv.MinY) mmv.minY = point.Y;
-
                         if (mmv.maxZ < point.Z && !float.IsInfinity(point.Z)) mmv.maxZ = point.Z;
                         if (mmv.minZ > point.Z) mmv.minZ = point.Z;
-
                         if (mmv.maxRho < point.Rho) mmv.maxRho = point.Rho;
                         if (mmv.minRho > point.Rho) mmv.minRho = point.Rho;
                     }
@@ -119,7 +112,6 @@ namespace GeoModel.Utils
         {
             if (point.IsBorder) point.Visible = false;
         }
-
         public void Process(List<List<List<GeoPoint>>> points, ScaleFactor scaleFactor)
         {
             if (mbv == null) CalcMbv(points);

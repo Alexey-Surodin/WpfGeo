@@ -19,7 +19,6 @@ namespace GeoModel
         private readonly List<List<List<GeoPoint>>> vzModel;
         private ScaleFactor scaleFactor;
         private bool paletteAutoScale;
-
         public GpModel()
         {
             Header = "Open File";
@@ -37,32 +36,25 @@ namespace GeoModel
         public void LoadModel(string filepath, ModelBoundary mbv)
         {
             preprocessor = new Preprocessor(mbv);
-
             foreach (var slice in fileReader.Read(filepath)) SourceModel.Add(slice);
-
             model.Clear();
             foreach (var slice in SourceModel)
             {
                 for (var i = 0; i < slice.Items.Count; i++)
                 {
                     while (ZLayerModel.Count < slice.Items.Count) ZLayerModel.Add(new GeoTreeNode());
-
                     ZLayerModel[i].Name = $"Z[{i}]";
-
                     var mSlice = new GeoTreeNode
                     {
                         Name = slice.Name
                     };
-
                     if (slice.Items[i] is GeoTreeNode points)
                     {
                         foreach (var point in points.Items)
                             mSlice.Add(point);
                     }
-
                     ZLayerModel[i].Add(mSlice);
                 }
-
                 var newSlice = new List<List<GeoPoint>>();
                 foreach (var sliceItem in slice.Items)
                 {
@@ -81,12 +73,10 @@ namespace GeoModel
                 }
                 model.Add(newSlice);
             }
-
             preprocessor.Process(model, ScaleFactor);
             ColorPalette.MaxRho = preprocessor.mmv.maxRho;
             ColorPalette.MinRho = preprocessor.mmv.minRho;
             preprocessor.UpdateColor(model, ColorPalette);
-
             drawer.Model = model;
             drawer.VzModel = vzModel;
             drawer.rhoColors = ColorPalette.rhoColors;
@@ -95,7 +85,6 @@ namespace GeoModel
             IsLoaded = true;
             OnPropertyChanged(null);
         }
-
         public void LoadVzPoints(string filepath)
         {
             var vz = fileReader.ReadVzPoints(filepath);
@@ -103,7 +92,6 @@ namespace GeoModel
             {
                 Name = vz.Name
             };
-
             foreach (var vzItem in vz.Items)
             {
                 if (vzItem is GeoPoint point)
@@ -112,9 +100,7 @@ namespace GeoModel
                     {
                         Name = $"X={(int)point.X}; Y={(int)point.Y}"
                     };
-
                     var vzList = new List<IGeoTreeItem>();
-
                     foreach (var slice in SourceModel)
                     {
                         vzList.AddRange(slice.FindItems(p =>
@@ -122,10 +108,8 @@ namespace GeoModel
                             (p as GeoPoint)?.Y == point.Y));
                     }
 
-
                     vzList = vzList.Distinct(new GeoPointComparer()).ToList();
                     vzList.Sort(new GeoPointComparer());
-
 
                     foreach (var vzPoint in vzList)
                     {
@@ -135,15 +119,11 @@ namespace GeoModel
                             vzLayer.Add(p);
                         }
                     }
-
                     vzPoints.Add(vzLayer);
                 }
             }
-
             VzPointsCollection.Add(vzPoints);
-
             vzModel.Clear();
-
             foreach (var vzCollection in VzPointsCollection)
             {
                 var vzSet = new List<List<GeoPoint>>();
@@ -157,18 +137,14 @@ namespace GeoModel
                             if (vzItem is GeoPoint vzPoint)
                                 points.Add(new GeoPoint(vzPoint));
                         }
-
                         vzSet.Add(points);
                     }
                 }
-
                 vzModel.Add(vzSet);
             }
-
             preprocessor.Process(vzModel, ScaleFactor);
             preprocessor.UpdateColor(vzModel, ColorPalette);
         }
-
         public void RemoveVzPoints(GeoTreeNode vzNode)
         {
             var index = VzPointsCollection.IndexOf(vzNode);
@@ -178,7 +154,6 @@ namespace GeoModel
                 vzModel.RemoveAt(index);
             }
         }
-
         public void UpdatePalette()
         {
             preprocessor?.UpdateColor(model, ColorPalette);
@@ -190,13 +165,11 @@ namespace GeoModel
             preprocessor?.HideBorders(model);
             preprocessor?.HideBorders(vzModel);
         }
-
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName]string prop = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
-
         #region Properties
         public ObservableCollection<GeoTreeNode> SourceModel { get; }
         public ObservableCollection<GeoTreeNode> VzPointsCollection { get; }

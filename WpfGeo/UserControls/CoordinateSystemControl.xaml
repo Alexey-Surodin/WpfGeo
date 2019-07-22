@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              Name="CSC" MinWidth="200" MinHeight="50" FontSize="10" Margin="4" VerticalContentAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Disabled">
-
     <Grid Background="White">
         <StackPanel Grid.Row="0" >
             <TextBlock Text="Coordinate System" HorizontalAlignment="Center" Margin="4"/>

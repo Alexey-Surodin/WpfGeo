@@ -4,14 +4,12 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-
 namespace GeoModel.Utils
 {
     internal class FileReader
     {
         private readonly char[] separator;
         private readonly NumberFormatInfo numberFormat;
-
         public FileReader()
         {
             numberFormat = new NumberFormatInfo
@@ -20,24 +18,19 @@ namespace GeoModel.Utils
             };
             separator = new[] { ' ', ',', ';', '\t' };
         }
-
         public List<GeoTreeNode> Read(string filename)
         {
             var slices = new List<GeoTreeNode>();
-
             using (var streamReader = File.OpenText(filename))
             {
                 //Read first line - string names of coords (e.g. x, y, z1, rho1, z2, rho2, ...)
                 streamReader.ReadLine();
-
                 //Read second line - 2 integer values: num of triangles, num of slices
                 var line = streamReader.ReadLine();
                 var words = line?.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-
                 //num of lines = num of triangles*3
                 var numOfLinesInSlice = int.Parse(words?[0] ?? "") * 3;
                 var numOfSlices = int.Parse(words?[1] ?? "");
-
                 //parse slices
                 for (var i = 0; i < numOfSlices; i++)
                 {
@@ -46,7 +39,6 @@ namespace GeoModel.Utils
             }
             return slices;
         }
-
         public GeoTreeNode ReadVzPoints(string filename)
         {
             var vzPoints = new GeoTreeNode
@@ -68,11 +60,9 @@ namespace GeoModel.Utils
                     var point = new GeoPoint(args[0], args[1], 0, 0);
                     vzPoints.Add(point);
                 }
-
             }
             return vzPoints;
         }
-
         private GeoTreeNode FillSlice(int numOfLinesInSlice, StreamReader streamReader)
         {
             //Read slice name
@@ -81,12 +71,10 @@ namespace GeoModel.Utils
             {
                 Name = line
             };
-
             for (var k = 0; k < numOfLinesInSlice; k++)
             {
                 line = streamReader?.ReadLine();
                 var words = line?.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-
                 var args = new float[words?.Length ?? 0];
                 for (var i = 0; i < words?.Length; i++)
                 {
@@ -96,15 +84,12 @@ namespace GeoModel.Utils
             }
             return ps;
         }
-
         private void AddLine(float[] args, ref GeoTreeNode node)
         {
             if (args.Length < 4) throw new ArgumentOutOfRangeException(nameof(args));
-
             var x = args[0];
             var y = args[1];
             var zCounter = 0;
-
             var l = args.Length - args.Length % 2;
             for (var i = 2; i < l; i += 2)
             {

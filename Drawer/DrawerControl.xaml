@@ -7,7 +7,6 @@
              mc:Ignorable="d"
              Focusable="True"
              d:DesignHeight="450" d:DesignWidth="800">
-
     <wpf:OpenGLControl Focusable="True"
         OpenGLDraw="OpenGLControl_OpenGLDraw"
         OpenGLInitialized="OpenGLControl_OpenGLInitialized" 
@@ -20,5 +19,4 @@
         RenderContextType="FBO" FrameRate="20"
                        DrawFPS="True"
         />
-
 </UserControl>

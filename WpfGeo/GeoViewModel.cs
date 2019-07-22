@@ -15,7 +15,6 @@ namespace WpfGeo
             Tabs = new ObservableCollection<TabItem>();
             NewTabCommand.Execute(null);
         }
-
         private TabItem selectedTab;
         public TabItem SelectedTab
         {
@@ -26,22 +25,17 @@ namespace WpfGeo
                 OnPropertyChanged(null);
             }
         }
-
         public ObservableCollection<TabItem> Tabs { get; }
-
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName]string prop = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
-
         #region GeoModel Properties
         public ObservableCollection<GeoTreeNode> SourceModel => ((GpModel)SelectedTab).SourceModel;
-
         public ObservableCollection<GeoTreeNode> VzPoints => ((GpModel)SelectedTab).VzPointsCollection;
         
         public ObservableCollection<GeoTreeNode> ZLayerModel => ((GpModel)SelectedTab).ZLayerModel;
-
         public bool ShowAxis
         {
             get => ((GpModel)SelectedTab).ShowAxis;
@@ -124,7 +118,6 @@ namespace WpfGeo
         }
         public bool IsLoaded => ((GpModel)SelectedTab).IsLoaded;
         #endregion
-
         #region Commands
         // CloseTab
         private void CloseTab()
@@ -144,7 +137,6 @@ namespace WpfGeo
         private RelayCommand closeTab;
         public RelayCommand CloseTabCommand => closeTab ??
             (closeTab = new RelayCommand(obj => CloseTab()));
-
         // NewTab
         private void NewTab()
         {
@@ -158,7 +150,6 @@ namespace WpfGeo
         private RelayCommand newTab;
         public RelayCommand NewTabCommand => newTab ??
             (newTab = new RelayCommand(obj => NewTab()));
-
         //LoadFile
         private void LoadFile(object obj)
         {
@@ -168,7 +159,6 @@ namespace WpfGeo
         private RelayCommand loadFileCommand;
         public RelayCommand LoadFileCommand => loadFileCommand ??
             (loadFileCommand = new RelayCommand(LoadFile));
-
         //LoadVZPoints
         private void LoadVzPoints()
         {
@@ -182,7 +172,6 @@ namespace WpfGeo
         private RelayCommand loadVzPoints;
         public RelayCommand LoadVzPointsCommand => loadVzPoints ??
             (loadVzPoints = new RelayCommand(obj => LoadVzPoints()));
-
         //RemoveVZP
         private void RemoveVzp(object obj)
         {
@@ -192,7 +181,6 @@ namespace WpfGeo
         private RelayCommand removeVzpCommand;
         public RelayCommand RemoveVzpCommand => removeVzpCommand ??
             (removeVzpCommand = new RelayCommand(RemoveVzp));
-
         //HideBordersCommand
         private void HideBorders()
         {

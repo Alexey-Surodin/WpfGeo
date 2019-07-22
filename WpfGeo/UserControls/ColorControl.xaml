@@ -46,7 +46,6 @@
                                   Text="{Binding ElementName=CC,Path=MinRho, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, 
                                         FallbackValue=0}"/>
                     </DockPanel>
-
                     <DockPanel LastChildFill="True" Margin="4,0,4,0">
                         <TextBlock  DockPanel.Dock="Left" Width="40"  Text="Max Rho"/>
                         <TextBox  AllowDrop="False" MinWidth="40" PreviewTextInput="TB_PreviewTextInput"

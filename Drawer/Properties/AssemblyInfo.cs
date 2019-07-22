@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
-
 [assembly: AssemblyTitle("Drawer")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]

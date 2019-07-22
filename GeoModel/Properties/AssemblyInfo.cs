@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
-
 [assembly: AssemblyTitle("GeoModel")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]

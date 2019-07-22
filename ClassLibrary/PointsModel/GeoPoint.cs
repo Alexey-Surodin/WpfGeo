@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-
 namespace ClassLibrary.PointsModel
 {
     public class GeoPoint : IGeoTreeItem
@@ -12,10 +11,8 @@ namespace ClassLibrary.PointsModel
         public float Rho { get; set; }
         public Color Color { get; set; }
         public bool IsBorder { get; set; }
-
         private readonly BoolWrapper visibleWrap;
         private readonly BoolWrapper selectedWrap;
-
         public bool Visible
         {
             get => visibleWrap.Value;
@@ -25,7 +22,6 @@ namespace ClassLibrary.PointsModel
                 OnPropertyChanged();
             }
         }
-
         public bool Selected
         {
             get => selectedWrap.Value;
@@ -35,7 +31,6 @@ namespace ClassLibrary.PointsModel
                 OnPropertyChanged();
             }
         }
-
         public bool Expanded { get; set; }
         
         public GeoPoint(float x, float y, float z, float rho, Color c = default(Color))
@@ -60,14 +55,12 @@ namespace ClassLibrary.PointsModel
             Rho = point.Rho;
             Color = point.Color;
         }
-
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string prop = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
     }
-
     public class GeoPointComparer : IEqualityComparer<IGeoTreeItem>, IComparer<IGeoTreeItem>
     {
         public int Compare(IGeoTreeItem x, IGeoTreeItem y)
@@ -82,7 +75,6 @@ namespace ClassLibrary.PointsModel
             }
             return 0;
         }
-
         public bool Equals(IGeoTreeItem x, IGeoTreeItem y)
         {
             if (x is GeoPoint a && y is GeoPoint b)
@@ -94,7 +86,6 @@ namespace ClassLibrary.PointsModel
             }
             return false;
         }
-
         public int GetHashCode(IGeoTreeItem obj)
         {
             if (obj is GeoPoint a)
@@ -106,4 +97,3 @@ namespace ClassLibrary.PointsModel
         }
     }
 }
-

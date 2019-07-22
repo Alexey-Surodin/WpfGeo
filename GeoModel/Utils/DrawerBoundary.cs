@@ -1,5 +1,4 @@
 ﻿
-
 namespace GeoModel.Utils
 {
     internal struct DrawerBoundary
@@ -10,7 +9,6 @@ namespace GeoModel.Utils
         public readonly float SoftBorderY;
         public readonly float HardBorderZ;
         public readonly float SoftBorderZ;
-
         public DrawerBoundary(float hx, float sx, float hy, float sy, float hz, float sz)
         {
             HardBorderX = hx;
