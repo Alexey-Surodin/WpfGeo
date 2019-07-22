@@ -1,0 +1,70 @@
+﻿<Window x:Class="WpfGeo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:uc="clr-namespace:WpfGeo.UserControls"
+        xmlns:local="clr-namespace:WpfGeo"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" x:Name="MWindow">
+    <Window.DataContext>
+        <local:GeoViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <uc:TreeTabControl Grid.Column="0"/>
+
+        <DockPanel Grid.Column="1" >
+            <Expander Header="options"
+                      DockPanel.Dock="Bottom" ExpandDirection="Up"
+                      IsEnabled="{Binding IsLoaded,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}">
+                <Expander.Content>
+                    <StackPanel Orientation="Horizontal" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                        <uc:ColorControl 
+                            Alpha="{Binding  Path=PaletteAlpha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            NumOfColors="{Binding Path=PaletteNumOfColors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            MinRho="{Binding Path=PaletteMinRho, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            MaxRho="{Binding Path=PaletteMaxRho, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            AutoColorScale="{Binding Path=PaletteAutoScale, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            />
+                        <uc:ScaleControl 
+                            ScaleFactorX="{Binding Path=ScaleFactorX, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            ScaleFactorY="{Binding Path=ScaleFactorY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            ScaleFactorZ="{Binding Path=ScaleFactorZ, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            />
+                        <uc:CoordinateSystemControl
+                            CoordinateSystemRightHand="{Binding Path=RightHandCoordinateSystem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                            />
+                    </StackPanel>
+                </Expander.Content>
+            </Expander>
+
+            <TabControl Margin="4"
+                        ItemsSource="{Binding  Path=Tabs, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                        SelectedValue="{Binding Path=SelectedTab, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+
+                <TabControl.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Close Tab" Command="{Binding CloseTabCommand}"/>
+                        <MenuItem Header="New Tab" Command="{Binding NewTabCommand}"/>
+                        <MenuItem Header="Hide Borders" Command="{Binding HideBordersCommand}"
+                                  IsEnabled="{Binding IsLoaded,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <MenuItem Header="Fill Triangles" IsCheckable="True" 
+                                  IsChecked="{Binding Path=FillTriangles, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  IsEnabled="{Binding IsLoaded,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <MenuItem Header="Show Color Scale" IsCheckable="True" 
+                                  IsChecked="{Binding Path=ShowColorScale, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  IsEnabled="{Binding IsLoaded,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <MenuItem Header="Show Axis" IsCheckable="True" 
+                                  IsChecked="{Binding Path=ShowAxis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                  IsEnabled="{Binding IsLoaded,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"/>
+                    </ContextMenu>
+                </TabControl.ContextMenu>
+            </TabControl>
+        </DockPanel>
+    </Grid>
+</Window>

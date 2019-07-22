@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="WpfGeo.UserControls.ModelBoundaryControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             Name="MBC" MinWidth="300" FontSize="10" Margin="4" VerticalContentAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderBrush="Black" >
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <DockPanel Grid.Row="0" Grid.Column="0" LastChildFill="True">
+            <TextBlock  DockPanel.Dock="Left" Width="40"  Text="Min X"/>
+            <TextBox  AllowDrop="False"  PreviewTextInput="TB_PreviewTextInput" 
+                      Text="{Binding ElementName=MBC,Path=MinX, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, 
+               FallbackValue=-20000}"/>
+        </DockPanel>
+        
+        <DockPanel Grid.Row="1" Grid.Column="0" LastChildFill="True">
+            <TextBlock  DockPanel.Dock="Left" Width="40"  Text="Max X"/>
+            <TextBox  AllowDrop="False"  PreviewTextInput="TB_PreviewTextInput"
+                       Text="{Binding ElementName=MBC,Path=MaxX, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, 
+                 FallbackValue=20000}"/>
+        </DockPanel>
+        
+        <DockPanel Grid.Row="0" Grid.Column="1" LastChildFill="True">
+            <TextBlock  DockPanel.Dock="Left" Width="40"  Text="Min Y"/>
+            <TextBox  AllowDrop="False"  PreviewTextInput="TB_PreviewTextInput"
+                       Text="{Binding ElementName=MBC,Path=MinY, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, 
+                 FallbackValue=-20000}"/>
+        </DockPanel>
+
+        <DockPanel Grid.Row="1" Grid.Column="1" LastChildFill="True">
+            <TextBlock  DockPanel.Dock="Left" Width="40"  Text="Max Y"/>
+            <TextBox  AllowDrop="False"  PreviewTextInput="TB_PreviewTextInput"
+                       Text="{Binding ElementName=MBC,Path=MaxY, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, 
+                 FallbackValue=20000}"/>
+        </DockPanel>
+
+    </Grid>
+</UserControl>

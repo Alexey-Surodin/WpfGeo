@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Drawer.DrawerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpf="clr-namespace:SharpGL.WPF;assembly=SharpGL.WPF"
+             mc:Ignorable="d"
+             Focusable="True"
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <wpf:OpenGLControl Focusable="True"
+        OpenGLDraw="OpenGLControl_OpenGLDraw"
+        OpenGLInitialized="OpenGLControl_OpenGLInitialized" 
+        Resized="OpenGLControl_Resized"
+        MouseWheel="OpenGLControl_MouseWheel"
+        MouseDown="OpenGLControl_MouseDown"
+        MouseMove="OpenGLControl_MouseMove"
+        MouseUp="OpenGLControl_MouseUp"
+                       KeyDown="OpenGLControl_KeyDown"
+        RenderContextType="FBO" FrameRate="20"
+                       DrawFPS="True"
+        />
+
+</UserControl>

@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="WpfGeo.UserControls.CoordinateSystemControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             Name="CSC" MinWidth="200" MinHeight="50" FontSize="10" Margin="4" VerticalContentAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+
+    <Grid Background="White">
+        <StackPanel Grid.Row="0" >
+            <TextBlock Text="Coordinate System" HorizontalAlignment="Center" Margin="4"/>
+            <RadioButton x:Name="RightRadioButton" Content="Right handed" 
+                         IsChecked="{Binding ElementName=CSC, Path=CoordinateSystemRightHand, 
+                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <RadioButton.Style>
+                    <Style TargetType="RadioButton">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=LeftRadioButton,Path=IsChecked }"
+                        Value="True">
+                                <Setter Property="IsChecked" Value="False"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=LeftRadioButton,Path=IsChecked }"
+                        Value="False">
+                                <Setter Property="IsChecked" Value="True"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </RadioButton.Style>
+            </RadioButton>
+            <RadioButton x:Name="LeftRadioButton" Content="Left handed">
+                <RadioButton.Style>
+                    <Style TargetType="RadioButton">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=RightRadioButton,Path=IsChecked }"
+                        Value="True">
+                                <Setter Property="IsChecked" Value="False"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=RightRadioButton,Path=IsChecked }"
+                        Value="False">
+                                <Setter Property="IsChecked" Value="True"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </RadioButton.Style>
+            </RadioButton>
+        </StackPanel>
+    </Grid>
+</UserControl>
